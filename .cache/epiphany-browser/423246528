@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html><head><title>Intro to Unix: Pipes and Filters</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="http://www.december.com/december.css" Type="text/css">
+<link rel="SHORTCUT ICON" href="http://www.december.com/favicon.ico">
+</head><body><div class="nav"><b>
+<a href="http://www.december.com/" title="December Communications, Inc.">december.com</a> / <a href="http://www.december.com/unix/">unix</a> | <a href="http://www.december.com/unix/">Unix Station</a> &middot; <a href="http://www.december.com/unix/tutor/">Tutor</a> &middot; <a href="http://www.december.com/unix/demo/">Demo</a> &middot; <a href="http://www.december.com/unix/ref/">Reference</a>
+ &middot; <a href="http://www.december.com/unix/ref/help.html">Help</a> &middot; <a href="http://www.december.com/unix/ref/books.html">Books</a> | <a href="http://www.december.com/works/central/search.html" title="Search december.com or the Web">search</a></b></div><table border="0" cellpadding="0" cellspacing="0"><tr><td valign="top"><div class="sidebar"><script type="text/javascript"><!--
+google_ad_client = "pub-9218689356960748";
+//Sidebar
+google_ad_slot = "7599091500";
+google_ad_width = 160;
+google_ad_height = 600;
+//--></script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div><td valign="top" rowspan="2"><div class="content">
+<div class="calloutlinkunit">
+<script type="text/javascript"><!--
+google_ad_client = "pub-9218689356960748";
+//Callout Linkunit
+google_ad_slot = "1582555999";
+google_ad_width = 180;
+google_ad_height = 90;
+//--></script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<A href="intro.html">Intro to Unix</A> 
+<H1>
+Pipes and Filters
+</H1>
+<P>
+The purpose of this lesson is to introduce you to the way
+that you can construct powerful Unix command lines by 
+combining Unix commands.
+
+<H2>Concepts</H2>
+<P>
+Unix commands alone are powerful, but when you combine them 
+together,  
+you can accomplish complex tasks with ease.  
+The way you 
+combine Unix commands is through using 
+pipes and filters.
+<img src="../images/pipes.gif" width="128" height="128" alt=" " align="right">
+
+<H2>Using a Pipe</H2>
+
+<P>
+The symbol | is the Unix pipe symbol that is 
+used on the command line.  What it means is 
+that the standard output of the command to the 
+left of the pipe gets sent
+as standard input of the command to the right of the 
+pipe.  Note that this functions a lot like the &gt; symbol used
+to redirect the standard output of a command to a <EM>file</EM>.
+However, the pipe is different because it is used to pass 
+the output of a command to <EM>another command</EM>, not a file.
+
+<P>
+Here is an example:
+  
+<BLOCKQUOTE class="code">
+<PRE>
+$ cat apple.txt
+core
+worm seed
+jewel
+$ cat apple.txt | wc 
+      3       4      21
+$
+</PRE>
+</BLOCKQUOTE>
+
+<P>
+In this example, at the first shell prompt,
+I show the contents of the 
+file apple.txt to you.  In the next shell prompt,
+I use the cat command to display the contents of 
+the apple.txt file, but I sent the display not
+to the screen, but through a pipe to 
+the wc (word count) command.  The wc command then 
+does its job and counts the 
+lines, words, and
+characters of what it got as input.
+
+<P>
+You can combine many commands with pipes  on a single command 
+line.
+Here's an example where I count the characters, words,
+and lines of the apple.txt file, then mail the results
+to nobody@december.com with the subject line
+"The count."
+
+<BLOCKQUOTE class="code">
+<PRE>
+$ cat apple.txt | wc | mail -s "The count" nobody@december.com 
+</PRE>
+</BLOCKQUOTE>
+
+
+<H2>Using a Filter</H2>
+
+<P>
+A filter is a Unix command that does some 
+manipulation of the text of a file.  Two of the 
+most powerful and popular Unix filters are the 
+sed and awk commands.
+Both of these commands are extremely powerful
+and complex.  
+
+
+<H3>sed</H3>
+<P>
+Here is a simple way to use the sed command 
+to manipulate the contents of the apple.txt file:
+
+<BLOCKQUOTE class="code">
+<PRE>
+$ cat apple.txt
+core
+worm seed
+jewel
+$ cat apple.txt | sed -e "s/e/WWW/"
+corWWW
+worm sWWWed
+jWWWwel
+$ cat apple.txt | sed -e "s/e/J/g"
+corJ
+worm sJJd
+jJwJl
+$ 
+</PRE>
+</BLOCKQUOTE>
+
+
+<P>
+In this example, at the first shell prompt, I showed
+you the contents of the apple.txt file.
+At the second shell prompt, I used the cat command
+to display the contents of the apple.txt file, and 
+send that display through a pipe to the sed command.
+The sed command I created changed the first occurrence
+of the letter "e" on each line to "WWW."  The sed
+took as input the information it got through 
+the pipe.  The sed command displayed its output to 
+the screen.
+<P>
+I then used the output of the cat command
+on the apple.txt file and sent it by a pipe to the sed 
+command to change all the occurrences of an e
+on each line with J.  Note that every occurence of e, even
+where there were more than one on a line, changed to J. 
+This is because of the "g" on the end of the sed option
+value string. This "g" stands for global replace.
+<P>
+It is important to note that, 
+in this example, the contents of the apple.txt
+file itself were not changed in the file.  Only the
+display of its contents changed. 
+
+
+<H3>awk</H3>
+
+The Unix command awk is another powerful filter.
+You can use awk to manipulate the contents of a file.
+Here is an example:
+
+<BLOCKQUOTE class="code">
+<PRE>
+$ cat basket.txt
+Layer1 = cloth
+Layer2 = strawberries
+Layer3 = fish
+Layer4 = chocolate
+Layer5 = punch cards
+$ cat basket.txt | awk -F= '{print $1}'
+Layer1
+Layer2
+Layer3
+Layer4
+Layer5                   
+$ cat basket.txt | awk -F= '{print "HAS: " $2}'
+HAS:  cloth
+HAS:  strawberries
+HAS:  fish
+HAS:  chocolate
+HAS:  punch cards              
+$ 
+</PRE>
+</BLOCKQUOTE>
+
+
+In this example, I first showed you the contents
+of the basket.txt file.  Then I displayed the contents
+and sent the output through a pipe to the awk command.
+I set up the awk command to display the first 
+word on each line that comes before the = sign.
+<P>
+Then I did something a bit different.  I used the cat
+command to display basket.txt and then send that output 
+through a pipe to awk, but this time appending the characters
+HAS:  to the start of every ouput line followed by the second
+word on each line in basket.txt, considering = as the separator
+between words on a line in basket.txt.
+
+<H3>grep</H3>
+
+<P>
+The Unix grep command helps you search for strings in 
+a file.
+Here is how I can find the lines that contain the 
+string "jewel" and display those lines to the 
+standard output:
+
+<BLOCKQUOTE class="code">
+<PRE>
+$ cat apple.txt
+core
+worm seed
+jewel
+$ grep jewel apple.txt
+jewel                                    
+$ 
+</PRE>
+</BLOCKQUOTE>
+
+<H2>Exercise: Try out some pipes and filters</H2>
+
+<P>
+Create a simple text file that contains words and symbols.
+Try using combinations of the 
+<A href="../demo/pipe.html">pipe symbol</A>, 
+<A href="../demo/cat.html">cat</A>, 
+<A href="../demo/grep.html">grep</A>, 
+<A href="../demo/awk.html">awk</A>, 
+and 
+<A href="../demo/sed.html">sed</A>
+commands
+to manipulate its contents.
+
+
+
+</div><tr><td valign="bottom">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-9218689356960748";
+/* sidebarbottom */
+google_ad_slot = "4179658223";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</table><div class="ad"><script type="text/javascript"><!--
+google_ad_client = "pub-9218689356960748";
+/* 728x90, created 4/9/10 */
+google_ad_slot = "2047359408";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div><div class="id"><b><!-- AddThis Button BEGIN -->
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=300&amp;pubid=december"><img src="http://www.december.com/images/bookmark.gif" border="0" vspace="0" align="bottom" alt="Save this page to any social bookmarking site!"></a> 
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=300&amp;pubid=december">Share</a>
+<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=december"></script>
+<!-- AddThis Button END -->
+ &middot; <img src="http://www.december.com/images/searchtiny.gif" border="0" vspace="0" align="bottom" alt="">
+<a href="http://www.december.com/works/central/websearch.html" title="Search the Web, december.com, reference, business, or people">Search</a> &middot; <img src="http://www.december.com/market/images/storetiny.gif" border="0" vspace="0" align="bottom" alt="">
+<a href="http://www.december.com/market/" title="Connect online and support december.com">Market</a> &middot; <img src="http://www.december.com/market/images/startiny.gif" border="0" vspace="0" align="bottom" alt="">
+<a href="http://www.december.com/market/directory.html" title="Connect to goods and services online that can help you accomplish your goals.">Directory</a></b>
+<br>2013-04-13
+ &middot; <a href="http://www.december.com/john/" title="Author/Editor of this information">John December</a> &middot; <a href="http://www.december.com/john/email.html" title="Please send corrections and updates">Contact</a> &middot; <a href="http://www.december.com/works/central/terms.html" title="Privacy policy and terms of use">Terms of Use</a> &copy; <a href="http://www.december.com/works/central/" title="Publisher of this information">December Communications, Inc.</a></div>
+</body></html>

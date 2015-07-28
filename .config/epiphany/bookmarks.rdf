@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://purl.org/rss/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ephy="http://gnome.org/ns/epiphany#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <channel rdf:about="file:///home/pi/.config/epiphany/bookmarks.rdf">
+    <title>Epiphany bookmarks</title>
+    <link>http://www.gnome.org/projects/epiphany/</link>
+    <items>
+      <rdf:Seq>
+        <rdf:li rdf:resource="https://duckduckgo.com"/>
+        <rdf:li rdf:resource="http://10.22.20.7:80/"/>
+        <rdf:li rdf:resource="http://10.22.20.26:80/"/>
+        <rdf:li rdf:resource="http://10.22.20.6:80/"/>
+        <rdf:li rdf:resource="ftp://10.22.20.6:21/"/>
+        <rdf:li rdf:resource="http://10.22.20.8:80/"/>
+        <rdf:li rdf:resource="http://10.22.20.20:80/"/>
+        <rdf:li rdf:resource="http://10.22.20.11:80/"/>
+        <rdf:li rdf:resource="http://10.22.20.37:80/"/>
+        <rdf:li rdf:resource="http://10.22.20.5:80/"/>
+        <rdf:li rdf:resource="ftp://10.22.20.5:21/"/>
+        <rdf:li rdf:resource="http://10.22.20.23:80/"/>
+      </rdf:Seq>
+    </items>
+  </channel>
+  <item rdf:about="https://duckduckgo.com">
+    <title>Search the web</title>
+    <link>https://duckduckgo.com</link>
+    <ephy:smartlink>https://duckduckgo.com/?q=%s&amp;t=raspberrypi</ephy:smartlink>
+  </item>
+  <item rdf:about="http://10.22.20.7:80/">
+    <title>HP LaserJet 300 colorMFP M375nw (6D3328)</title>
+    <link>http://10.22.20.7:80/</link>
+  </item>
+  <item rdf:about="http://10.22.20.26:80/">
+    <title>HP LaserJet P2015 Series (1CF513)</title>
+    <link>http://10.22.20.26:80/</link>
+  </item>
+  <item rdf:about="http://10.22.20.6:80/">
+    <title>HP Designjet Z6200ps 42in Photo [161D51]</title>
+    <link>http://10.22.20.6:80/</link>
+  </item>
+  <item rdf:about="ftp://10.22.20.6:21/">
+    <title>HP Designjet Z6200ps 42in Photo [161D51]</title>
+    <link>ftp://10.22.20.6:21/</link>
+  </item>
+  <item rdf:about="http://10.22.20.8:80/">
+    <title>HP LaserJet 400 M401n (7B8FE5)</title>
+    <link>http://10.22.20.8:80/</link>
+  </item>
+  <item rdf:about="http://10.22.20.20:80/">
+    <title>HP LaserJet 5100 Series (00306EF7C697)</title>
+    <link>http://10.22.20.20:80/</link>
+  </item>
+  <item rdf:about="http://10.22.20.11:80/">
+    <title>HP Officejet Pro X576dw MFP [5F97A8]</title>
+    <link>http://10.22.20.11:80/</link>
+  </item>
+  <item rdf:about="http://10.22.20.37:80/">
+    <title>HP LaserJet 400 M401n (7B8F96)</title>
+    <link>http://10.22.20.37:80/</link>
+  </item>
+  <item rdf:about="http://10.22.20.5:80/">
+    <title>HP Designjet Z6200ps 42in Photo [162A5E]</title>
+    <link>http://10.22.20.5:80/</link>
+  </item>
+  <item rdf:about="ftp://10.22.20.5:21/">
+    <title>HP Designjet Z6200ps 42in Photo [162A5E]</title>
+    <link>ftp://10.22.20.5:21/</link>
+  </item>
+  <item rdf:about="http://10.22.20.23:80/">
+    <title>HP LaserJet 5100 Series [EC0FFF]</title>
+    <link>http://10.22.20.23:80/</link>
+  </item>
+</rdf:RDF>
